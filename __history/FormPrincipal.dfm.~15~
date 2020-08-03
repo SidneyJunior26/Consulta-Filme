@@ -1,0 +1,140 @@
+object FrmPrincipal: TFrmPrincipal
+  Left = 0
+  Top = 0
+  Caption = 'FrmPrincipal'
+  ClientHeight = 379
+  ClientWidth = 626
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 626
+    Height = 65
+    Align = alTop
+    TabOrder = 0
+    DesignSize = (
+      626
+      65)
+    object Label1: TLabel
+      Left = 113
+      Top = 26
+      Width = 109
+      Height = 13
+      Anchors = [akTop]
+      Caption = 'Digite o nome do filme:'
+    end
+    object Edit1: TEdit
+      Left = 228
+      Top = 23
+      Width = 150
+      Height = 21
+      Anchors = [akTop]
+      TabOrder = 0
+    end
+    object Button1: TButton
+      Left = 384
+      Top = 21
+      Width = 75
+      Height = 25
+      Anchors = [akTop]
+      Caption = 'Pesquisar'
+      TabOrder = 1
+      OnClick = Button1Click
+    end
+    object Button2: TButton
+      Left = 544
+      Top = 21
+      Width = 75
+      Height = 25
+      Anchors = [akTop]
+      Caption = 'Limpar'
+      TabOrder = 2
+      OnClick = Button2Click
+    end
+    object Button3: TButton
+      Left = 463
+      Top = 21
+      Width = 75
+      Height = 25
+      Caption = 'Pesq. Todos'
+      TabOrder = 3
+      OnClick = Button3Click
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 65
+    Width = 626
+    Height = 314
+    Align = alClient
+    TabOrder = 1
+    ExplicitLeft = 232
+    ExplicitTop = 192
+    ExplicitWidth = 185
+    ExplicitHeight = 41
+    object Memo1: TMemo
+      Left = 1
+      Top = 1
+      Width = 624
+      Height = 312
+      Align = alClient
+      TabOrder = 0
+      ExplicitLeft = 184
+      ExplicitTop = 104
+      ExplicitWidth = 185
+      ExplicitHeight = 89
+    end
+  end
+  object RESTClient1: TRESTClient
+    Accept = 'application/json, text/plain; q=0.9, text/html;q=0.8,'
+    AcceptCharset = 'utf-8, *;q=0.8'
+    Params = <>
+    Left = 512
+    Top = 96
+  end
+  object RESTRequest1: TRESTRequest
+    Client = RESTClient1
+    Params = <>
+    Response = RESTResponse1
+    SynchronizedEvents = False
+    Left = 512
+    Top = 184
+  end
+  object RESTResponse1: TRESTResponse
+    ContentType = 'application/json'
+    Left = 544
+    Top = 264
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 20
+    Top = 5
+    object LinkControlToField1: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = RESTResponse1
+      FieldName = 'Content'
+      Control = Memo1
+      Track = False
+    end
+  end
+  object FDMemTable1: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 448
+    Top = 312
+  end
+end
